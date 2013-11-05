@@ -1,22 +1,13 @@
-package de.shop.auftragsverwaltung.domain;
-import java.util.ArrayList;
-import java.util.List;
+package de.shop.bestellverwaltung.domain;
 
-
-public class Auftrag {
+public class Rechnung {
 	private Integer pID;
-	private List<Lieferant> pLieferant;
-	private List<Rechnung> pRechnung;
 	
-	public Auftrag(Integer aID) {
+	public Rechnung(Integer aID) {
 		//Check if ID argument is empty.
 		if (aID.equals(null) || aID < 0) {
 			throw new NullPointerException();
 		}
-		
-		//Initialize parameters.
-		this.pLieferant = new ArrayList<Lieferant>();
-		this.pRechnung = new ArrayList<Rechnung>();
 
 		//Set parameters.
 		this.pID = aID;

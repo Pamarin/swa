@@ -1,4 +1,4 @@
-package de.shop.auftragsverwaltung.domain;
+package de.shop.bestellverwaltung.domain;
 import static org.jboss.resteasy.api.validation.ConstraintType.Type.RETURN_VALUE;
 
 public class Lieferant {
