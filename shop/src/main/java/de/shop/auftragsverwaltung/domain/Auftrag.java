@@ -4,6 +4,7 @@ import java.util.List;
 
 
 public class Auftrag {
+	private Integer pID;
 	private List<Lieferant> pLieferant;
 	private List<Rechnung> pRechnung;
 	
