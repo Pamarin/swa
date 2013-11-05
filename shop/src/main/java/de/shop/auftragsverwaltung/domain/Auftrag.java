@@ -1,3 +1,4 @@
+package de.shop.auftragsverwaltung.domain;
 import java.util.ArrayList;
 import java.util.List;
 

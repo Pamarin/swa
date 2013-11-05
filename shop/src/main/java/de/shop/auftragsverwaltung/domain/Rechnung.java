@@ -1,3 +1,4 @@
+package de.shop.auftragsverwaltung.domain;
 
 public class Rechnung {
 	private Integer pID;
