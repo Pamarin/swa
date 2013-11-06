@@ -15,6 +15,7 @@ public class Produkt {
 		istVerfügbar,
 		istNichtVerfügbar,
 		istNachbestellt,
+		istNichtMehrImSortiment,
 	}
 	
 	@NotNull
@@ -23,12 +24,13 @@ public class Produkt {
 	
 	@NotNull																//sinnvoll?
 	@Size(min =3, max = 30)
-	@Pattern(regexp = "[A-Z0123456789][a-z0123456789][a-z 0123456789]+")	// \w?
+	@Pattern(regexp = "[A-Z0123456789][a-z0123456789][a-z 0123456789]")	// \w?
 	private String bezeichnung;
 	
 	@NotNull
 	@DecimalMin("0,99")
 	private BigDecimal preis;
+	
 	
 	private Verfügbarkeit Status;
 	
