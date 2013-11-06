@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 
 public class Artikel {
 	// geschrieben von Marvin
-	// ToDo Set Preis!
+	// ToDo Beans Validation für Verfügbarkeit
 	
 	enum Verfügbarkeit{
 		istVerfügbar,
