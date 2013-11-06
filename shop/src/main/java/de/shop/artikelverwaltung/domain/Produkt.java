@@ -1,6 +1,5 @@
 package de.shop.artikelverwaltung.domain;
 
-
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -8,7 +7,7 @@ import javax.validation.constraints.Size;
 
 import java.math.BigDecimal;
 
-public class Artikel {
+public class Produkt {
 	// geschrieben von Marvin
 	// ToDo Beans Validation für Verfügbarkeit
 	
@@ -20,7 +19,7 @@ public class Artikel {
 	
 	@NotNull
 	@Pattern (regexp = "\\d{8}")
-	private String artikelnummer;
+	private String produktnummer;
 	
 	@NotNull																//sinnvoll?
 	@Size(min =3, max = 30)
@@ -36,39 +35,48 @@ public class Artikel {
 	public BigDecimal getPreis() {
 		return preis;
 	}
+	
 	public void setPreis(BigDecimal preis) {
 		this.preis = preis;
 	}
+	
 	public String getBezeichnung() {
 		return bezeichnung;
 	}
+	
 	public void setBezeichnung(String bezeichnung) {
 		this.bezeichnung = bezeichnung;
 	}
-	public String getArtikelnummer() {
-		return artikelnummer;
+	
+	public String getProduktnummer() {
+		return produktnummer;
 	}
-	public void setArtikelnummer(String artikelnummer) {
-		this.artikelnummer = artikelnummer;
+	
+	public void setProduktnummer(String produktnummer) {
+		this.produktnummer = produktnummer;
 	}
+	
 	public Verfügbarkeit getStatus() {
 		return Status;
 	}
+	
 	public void setStatus(Verfügbarkeit status) {
 		Status = status;
 	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((Status == null) ? 0 : Status.hashCode());
 		result = prime * result
-				+ ((artikelnummer == null) ? 0 : artikelnummer.hashCode());
+				+ ((produktnummer == null) ? 0 : produktnummer.hashCode());
 		result = prime * result
 				+ ((bezeichnung == null) ? 0 : bezeichnung.hashCode());
 		result = prime * result + ((preis == null) ? 0 : preis.hashCode());
 		return result;
 	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -77,13 +85,13 @@ public class Artikel {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Artikel other = (Artikel) obj;
+		Produkt other = (Produkt) obj;
 		if (Status != other.Status)
 			return false;
-		if (artikelnummer == null) {
-			if (other.artikelnummer != null)
+		if (produktnummer == null) {
+			if (other.produktnummer != null)
 				return false;
-		} else if (!artikelnummer.equals(other.artikelnummer))
+		} else if (!produktnummer.equals(other.produktnummer))
 			return false;
 		if (bezeichnung == null) {
 			if (other.bezeichnung != null)
@@ -97,9 +105,11 @@ public class Artikel {
 			return false;
 		return true;
 	}
+	
 	@Override
 	public String toString() {
-		return "Artikel [artikelnummer=" + artikelnummer + ", bezeichnung="
-				+ bezeichnung + ", preis=" + preis + ", Status=" + Status + "]";
-	}	
+		return "Produkt [getPreis()=" + getPreis() + ", getBezeichnung()="
+				+ getBezeichnung() + ", getProduktnummer()="
+				+ getProduktnummer() + ", getStatus()=" + getStatus() + "]";
+	}
 }
