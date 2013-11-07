@@ -1,4 +1,4 @@
-package de.shop.bestellverwaltung.domain;
+package de.shop.util;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;

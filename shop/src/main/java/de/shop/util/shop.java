@@ -41,10 +41,10 @@ public class shop {
 		Link self = Link.fromUri("https://.../auftrag")
 						.rel("self")
 						.build();
-		Link first = Link.fromUri("https://.../auftrag/" + Auftraege.get(0).getNr())
+		Link first = Link.fromUri("https://.../auftrag/" + Auftraege.get(0).getId())
 						 .rel("first")
 						 .build();
-		Link last = Link.fromUri("https://.../auftrag/" + Auftraege.get(Auftraege.size() - 1).getNr())
+		Link last = Link.fromUri("https://.../auftrag/" + Auftraege.get(Auftraege.size() - 1).getId())
 						.rel("last")
 						.build();
 		return Response.ok(new GenericEntity<List<Auftrag>>(Auftraege) {})
@@ -54,9 +54,9 @@ public class shop {
 	
 	@GET
 	@Path("auftrag/{auftragsnr:[1-9][0-9]*}")
-	public Response getAuftrag(@PathParam("auftragsnr") Integer auftragsnr) {
+	public Response getAuftrag(@PathParam("auftragsid") Integer auftragsid) {
 		//einen bestimmten Auftrag holen
-		Link self = Link.fromUri("https://.../auftrag/" + auftragsnr)
+		Link self = Link.fromUri("https://.../auftrag/" + auftragsid)
 						.rel("self")
 						.build();
 		Link list = Link.fromUri("https://.../auftrag")
@@ -73,12 +73,12 @@ public class shop {
 						  .build();
 		
 		for(Auftrag auftrag : Auftraege) {
-			if(auftrag.getNr().equals(auftragsnr))
+			if(auftrag.getId().equals(auftragsid))
 				return Response.ok(auftrag)
 							   .links(self, list, add, update, remove)
 							   .build();
 		}
 		
-		throw new NotFoundException("Kein Auftrag mit der Nr: " + auftragsnr + " gefunden.");
+		throw new NotFoundException("Kein Auftrag mit der AuftragsId: " + auftragsid + " gefunden.");
 	}
 }

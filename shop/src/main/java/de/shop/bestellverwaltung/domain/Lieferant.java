@@ -3,6 +3,8 @@ package de.shop.bestellverwaltung.domain;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
+import de.shop.util.Adresse;
+
 /**
  * @author Jean-Luc Burot
  *
