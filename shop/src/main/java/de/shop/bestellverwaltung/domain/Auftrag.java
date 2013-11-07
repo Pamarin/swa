@@ -3,15 +3,12 @@ import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static javax.ws.rs.core.MediaType.APPLICATION_XML;
 import static javax.ws.rs.core.MediaType.TEXT_XML;
 
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
-import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import javax.ws.rs.core.Response;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -25,13 +22,13 @@ import javax.xml.bind.annotation.XmlTransient;
 @Produces({ APPLICATION_JSON, APPLICATION_XML + ";qs=0.75", TEXT_XML + ";qs=0.75"})
 @Consumes
 public class Auftrag {
-	enum AuftragsStatus {
+	public enum AuftragsStatus {
 		InBearbeitung,
 		Abgeschlossen
 	}
 	
 	@XmlTransient
-	private Integer id;
+	private Long id;
 	@XmlTransient
 	private AuftragsStatus status;
 	@XmlTransient
@@ -42,9 +39,8 @@ public class Auftrag {
 	/**
 	 * @param nr Auftragsnummer.
 	 */
-	public Auftrag(Integer id) {
+	public Auftrag() {
 		super();
-		setId(id);
 		setStatus(AuftragsStatus.InBearbeitung);
 		this.lieferant = new ArrayList<Lieferant>();
 		this.rechnung = new ArrayList<Rechnung>();
@@ -53,14 +49,14 @@ public class Auftrag {
 	/**
 	 * @return Auftragsnummer.
 	 */
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 	
 	/**
 	 * @param id Auftragsnummer.
 	 */
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		if(id == null)
 			throw new NullPointerException("Id muss einen Wert haben.");
 
@@ -222,6 +218,7 @@ public class Auftrag {
 				+ ", getRechnungAll()=" + getRechnungAll() + "]";
 	}
 
+	/*
 	@POST
 	public Response createAuftrag(Auftrag auftrag) {
 		//einen neuen Auftrag anlegen
@@ -229,4 +226,5 @@ public class Auftrag {
 		return Response.created(myuri)
 					   .build();
 	}
+	*/
 }
