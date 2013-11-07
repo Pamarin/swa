@@ -16,7 +16,7 @@ import javax.xml.bind.annotation.XmlTransient;
 public class Anschrift implements Serializable {
 	
 	/**
-	 * 
+	 * @author Jan Krieghoff
 	 */
 	private static final long serialVersionUID = -2761718968924894847L;
 
@@ -88,6 +88,7 @@ public class Anschrift implements Serializable {
 	}
 
 	public void setOrt(String ort) {
+		//TODO Plausibilität prüfen
 		this.ort = ort;
 	}
 
@@ -96,6 +97,7 @@ public class Anschrift implements Serializable {
 	}
 
 	public void setPlz(String plz) {
+		//TODO Plausibilität prüfen
 		this.plz = plz;
 	}
 
@@ -104,7 +106,80 @@ public class Anschrift implements Serializable {
 	}
 
 	public void setStrasse(String strasse) {
+		//TODO Plausibilität prüfen
 		this.strasse = strasse;
+	}
+
+	@Override
+	public String toString() {
+		return "Anschrift [anschriftID=" + anschriftID + ", aktualisiert="
+				+ aktualisiert + ", erzeugt=" + erzeugt + ", hausnummer="
+				+ hausnummer + ", ort=" + ort + ", plz=" + plz + ", strasse="
+				+ strasse + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((aktualisiert == null) ? 0 : aktualisiert.hashCode());
+		result = prime * result
+				+ ((anschriftID == null) ? 0 : anschriftID.hashCode());
+		result = prime * result + ((erzeugt == null) ? 0 : erzeugt.hashCode());
+		result = prime * result
+				+ ((hausnummer == null) ? 0 : hausnummer.hashCode());
+		result = prime * result + ((ort == null) ? 0 : ort.hashCode());
+		result = prime * result + ((plz == null) ? 0 : plz.hashCode());
+		result = prime * result + ((strasse == null) ? 0 : strasse.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Anschrift other = (Anschrift) obj;
+		if (aktualisiert == null) {
+			if (other.aktualisiert != null)
+				return false;
+		} else if (!aktualisiert.equals(other.aktualisiert))
+			return false;
+		if (anschriftID == null) {
+			if (other.anschriftID != null)
+				return false;
+		} else if (!anschriftID.equals(other.anschriftID))
+			return false;
+		if (erzeugt == null) {
+			if (other.erzeugt != null)
+				return false;
+		} else if (!erzeugt.equals(other.erzeugt))
+			return false;
+		if (hausnummer == null) {
+			if (other.hausnummer != null)
+				return false;
+		} else if (!hausnummer.equals(other.hausnummer))
+			return false;
+		if (ort == null) {
+			if (other.ort != null)
+				return false;
+		} else if (!ort.equals(other.ort))
+			return false;
+		if (plz == null) {
+			if (other.plz != null)
+				return false;
+		} else if (!plz.equals(other.plz))
+			return false;
+		if (strasse == null) {
+			if (other.strasse != null)
+				return false;
+		} else if (!strasse.equals(other.strasse))
+			return false;
+		return true;
 	}
 
 }
