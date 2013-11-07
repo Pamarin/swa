@@ -7,7 +7,6 @@ import java.util.Random;
 import de.shop.bestellverwaltung.domain.Auftrag;
 import de.shop.bestellverwaltung.domain.Auftrag.AuftragsStatus;
 import de.shop.kundenverwaltung.domain.Kunde;
-import de.shop.kundenverwaltung.domain.Anschrift;
 
 /**
  * Emulation des Anwendungskerns
@@ -38,8 +37,8 @@ public final class Mock {
 		kunde.setNachname("Nachname" + id);
 		kunde.setEMail("" + id + "@hska.de");
 		
-		final Anschrift adresse = new Anschrift();
-		adresse.setAnschriftID(id + 1);        // andere ID fuer die Adresse
+		final Adresse adresse = new Adresse();
+		adresse.setId(id + 1);        // andere ID fuer die Adresse
 		adresse.setPlz("12345");
 		adresse.setOrt("Testort");
 		kunde.setAnschrift(adresse);
@@ -123,8 +122,8 @@ public final class Mock {
 		// Ein neuer Kunde hat auch keine Bestellungen
 		final String nachname = kunde.getNachname();
 		kunde.setKundeID(Long.valueOf(nachname.length()));
-		final Anschrift anschrift = kunde.getAnschrift();
-		anschrift.setAnschriftID((Long.valueOf(nachname.length())) + 1);
+		final Adresse anschrift = kunde.getAnschrift();
+		anschrift.setId((Long.valueOf(nachname.length())) + 1);
 		kunde.setAuftraege(null);
 		
 		System.out.println("Neuer Kunde: " + kunde);

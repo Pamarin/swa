@@ -1,122 +1,144 @@
 package de.shop.util;
 
-import javax.xml.bind.annotation.XmlRootElement;
+import static javax.persistence.TemporalType.TIMESTAMP;
+
+import java.io.Serializable;
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-/**
- * @author Jean-Luc Burot
- *
- */
-@XmlRootElement
-public class Adresse {
-	@XmlTransient
-	private String Strasse;
-	@XmlTransient
-	private String PLZ;
-	@XmlTransient
-	private String Stadt;
-	@XmlTransient
-	private String Land;
+public class Adresse implements Serializable {
 	
 	/**
-	 * @param strasse Straße.
-	 * @param pLZ Postleitzahl.
-	 * @param stadt Stadt.
-	 * @param land Land.
+	 * @author Jan Krieghoff
 	 */
-	public Adresse(String strasse, String pLZ, String stadt, String land) {
-		super();
-		setStrasse(strasse);
-		setPLZ(pLZ);
-		setStadt(stadt);
-		setLand(land);
+	private static final long serialVersionUID = -2761718968924894847L;
+
+	@Id
+	@GeneratedValue
+	@Column(name = "id", nullable = false, updatable = false)
+	@XmlAttribute
+	private Long id;
+
+	@Column(name = "aktualisiert", nullable = false)
+	@Temporal(TIMESTAMP)
+	private Date aktualisiert;
+
+	@Column(name = "erzeugt", nullable = false)
+	@Temporal(TIMESTAMP)
+	@XmlTransient
+	private Date erzeugt;
+
+	@Column(name = "strasse", nullable = false)
+	@XmlElement(required = true)
+	private String strasse;
+
+	@Column(name = "hausnummer", nullable = false)
+	@XmlElement(required = true)
+	private String hausnummer;
+
+	@Column(name = "plz", nullable = false)
+	@XmlElement(required = true)
+	private String plz;
+
+	@Column(name = "ort", nullable = false)
+	@XmlElement(required = true)
+	private String ort;
+	
+	@Column(name = "land", nullable = false)
+	@XmlElement(required = true)
+	private String land;
+
+	public Long getId() {
+		return id;
 	}
 
-	/**
-	 * @return Straße.
-	 */
-	public String getStrasse() {
-		return Strasse;
+	public void setId(Long id) {
+		this.id = id;
 	}
-	
-	/**
-	 * @param strasse Straße.
-	 */
-	public void setStrasse(String strasse) {
-		if(strasse == null || strasse == "")
-			throw new NullPointerException("Straße muss einen Namen haben.");
-		
-		Strasse = strasse;
-	}
-	
-	/**
-	 * @return Postleitzahl.
-	 */
-	public String getPLZ() {
-		return PLZ;
-	}
-	
-	/**
-	 * @param pLZ Postleitzahl.
-	 */
-	public void setPLZ(String pLZ) {
-		if(pLZ == null || pLZ == "")
-			throw new NullPointerException("PLZ muss einen Wert habe.");
-		
-		PLZ = pLZ;
-	}
-	
-	/**
-	 * @return Stadt.
-	 */
-	public String getStadt() {
-		return Stadt;
-	}
-	
-	/**
-	 * @param stadt Stadt.
-	 */
-	public void setStadt(String stadt) {
-		if(stadt == null || stadt == "")
-			throw new NullPointerException("Stadt muss einen Namen haben.");
-		
-		Stadt = stadt;
-	}
-	
-	/**
-	 * @return Land.
-	 */
+
 	public String getLand() {
-		return Land;
-	}
-	
-	/**
-	 * @param land Land.
-	 */
-	public void setLand(String land) {
-		if(land == null || land == "")
-			throw new NullPointerException("Land muss einen Namen haben.");
-		
-		Land = land;
+		return land;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#hashCode()
-	 */
+	public void setLand(String land) {
+		this.land = land;
+	}
+
+	public Date getAktualisiert() {
+		return aktualisiert;
+	}
+
+	public void setAktualisiert(Date aktualisiert) {
+		this.aktualisiert = aktualisiert;
+	}
+
+	public Date getErzeugt() {
+		return erzeugt;
+	}
+
+	public void setErzeugt(Date erzeugt) {
+		this.erzeugt = erzeugt;
+	}
+
+	public String getHausnummer() {
+		return hausnummer;
+	}
+
+	public void setHausnummer(String hausnummer) {
+		this.hausnummer = hausnummer;
+	}
+
+	public String getOrt() {
+		return ort;
+	}
+
+	public void setOrt(String ort) {
+		//TODO Plausibilität prüfen
+		this.ort = ort;
+	}
+
+	public String getPlz() {
+		return plz;
+	}
+
+	public void setPlz(String plz) {
+		//TODO Plausibilität prüfen
+		this.plz = plz;
+	}
+
+	public String getStrasse() {
+		return strasse;
+	}
+
+	public void setStrasse(String strasse) {
+		//TODO Plausibilität prüfen
+		this.strasse = strasse;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((Land == null) ? 0 : Land.hashCode());
-		result = prime * result + ((PLZ == null) ? 0 : PLZ.hashCode());
-		result = prime * result + ((Stadt == null) ? 0 : Stadt.hashCode());
-		result = prime * result + ((Strasse == null) ? 0 : Strasse.hashCode());
+		result = prime * result
+				+ ((aktualisiert == null) ? 0 : aktualisiert.hashCode());
+		result = prime * result + ((erzeugt == null) ? 0 : erzeugt.hashCode());
+		result = prime * result
+				+ ((hausnummer == null) ? 0 : hausnummer.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((land == null) ? 0 : land.hashCode());
+		result = prime * result + ((ort == null) ? 0 : ort.hashCode());
+		result = prime * result + ((plz == null) ? 0 : plz.hashCode());
+		result = prime * result + ((strasse == null) ? 0 : strasse.hashCode());
 		return result;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -126,36 +148,55 @@ public class Adresse {
 		if (getClass() != obj.getClass())
 			return false;
 		Adresse other = (Adresse) obj;
-		if (Land == null) {
-			if (other.Land != null)
+		if (aktualisiert == null) {
+			if (other.aktualisiert != null)
 				return false;
-		} else if (!Land.equals(other.Land))
+		} else if (!aktualisiert.equals(other.aktualisiert))
 			return false;
-		if (PLZ == null) {
-			if (other.PLZ != null)
+		if (erzeugt == null) {
+			if (other.erzeugt != null)
 				return false;
-		} else if (!PLZ.equals(other.PLZ))
+		} else if (!erzeugt.equals(other.erzeugt))
 			return false;
-		if (Stadt == null) {
-			if (other.Stadt != null)
+		if (hausnummer == null) {
+			if (other.hausnummer != null)
 				return false;
-		} else if (!Stadt.equals(other.Stadt))
+		} else if (!hausnummer.equals(other.hausnummer))
 			return false;
-		if (Strasse == null) {
-			if (other.Strasse != null)
+		if (id == null) {
+			if (other.id != null)
 				return false;
-		} else if (!Strasse.equals(other.Strasse))
+		} else if (!id.equals(other.id))
+			return false;
+		if (land == null) {
+			if (other.land != null)
+				return false;
+		} else if (!land.equals(other.land))
+			return false;
+		if (ort == null) {
+			if (other.ort != null)
+				return false;
+		} else if (!ort.equals(other.ort))
+			return false;
+		if (plz == null) {
+			if (other.plz != null)
+				return false;
+		} else if (!plz.equals(other.plz))
+			return false;
+		if (strasse == null) {
+			if (other.strasse != null)
+				return false;
+		} else if (!strasse.equals(other.strasse))
 			return false;
 		return true;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
 	@Override
 	public String toString() {
-		return "Adresse [Strasse: " + getStrasse() + ", PLZ: "
-				+ getPLZ() + ", Stadt: " + getStadt() + ", Land: "
-				+ getLand() + "]";
+		return "Adresse [getId()=" + getId() + ", getLand()=" + getLand()
+				+ ", getAktualisiert()=" + getAktualisiert()
+				+ ", getErzeugt()=" + getErzeugt() + ", getHausnummer()="
+				+ getHausnummer() + ", getOrt()=" + getOrt() + ", getPlz()="
+				+ getPlz() + ", getStrasse()=" + getStrasse() + "]";
 	}
 }

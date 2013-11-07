@@ -22,6 +22,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 import de.shop.bestellverwaltung.domain.Auftrag;
+import de.shop.util.Adresse;
 
 import java.util.Date;
 import java.util.ArrayList;
@@ -78,7 +79,7 @@ public class Kunde implements Serializable {
 	private String telefon;
 
 	@Valid
-	private Anschrift anschrift;
+	private Adresse anschrift;
 
 	@JoinColumn(name = "kunde_fk", nullable = false)
 	@OrderColumn(name = "idx", nullable = false)
@@ -167,11 +168,11 @@ public class Kunde implements Serializable {
 		this.vorname = vorname;
 	}
 
-	public Anschrift getAnschrift() {
+	public Adresse getAnschrift() {
 		return anschrift;
 	}
 
-	public void setAnschrift(Anschrift anschrift) {
+	public void setAnschrift(Adresse anschrift) {
 		this.anschrift = anschrift;
 	}
 
