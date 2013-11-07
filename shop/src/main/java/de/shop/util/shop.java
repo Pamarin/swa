@@ -1,3 +1,4 @@
+package de.shop.util;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static javax.ws.rs.core.MediaType.APPLICATION_XML;
 import static javax.ws.rs.core.MediaType.TEXT_XML;
@@ -80,58 +81,4 @@ public class shop {
 		
 		throw new NotFoundException("Kein Auftrag mit der Nr: " + auftragsnr + " gefunden.");
 	}
-		
-	/*
-	@GET
-	@Path("{auftragsnr:[1-9][0-9]*}")
-	public Response getAuftrag(@PathParam("auftragsnr") Integer auftragsnr) {
-		//einen bestimmten Auftrag holen
-	}
-	
-	@GET
-	@Path("{auftragsnr:[1-9][0-9]*}/lieferant")
-	public Response getLieferantAll(@PathParam("auftragsnr") Integer auftragsnr) {
-		//alle Lieferanten zu einem bestimmten Auftrag holen
-	}
-	
-	@GET
-	@Path("{auftragsnr:[1-9][0-9]*}/lieferant/{lieferantennr:[1-9][0-9]*}")
-	public Response getLieferant(@PathParam("auftragsnr") Integer auftragsnr, @PathParam("lieferantennr") Integer lieferantennr) {
-		//einen bestimmten Lieferanten zu einem bestimmten Auftrag holen
-	}
-	
-	@GET
-	@Path("{auftragsnr:[1-9][0-9]*}/rechnung")
-	public Response getRechnungAll(@PathParam("auftragsnr") Integer auftragsnr) {
-		//alle Rechnungen zu einem bestimmten Auftrag holen
-	}
-	
-	@GET
-	@Path("{auftragsnr:[1-9][0-9]*}/rechnung/{rechnungsnr:[1-9][0-9]*}")
-	public Response getRechnung(@PathParam("auftragsnr") Integer auftragsnr, @PathParam("rechnungsnr") Integer rechnungsnr) {
-		//eine bestimmte Rechnung zu einem bestimmten Auftrag holen
-	}
-	
-	@POST
-	@Consumes({ APPLICATION_JSON, APPLICATION_XML, TEXT_XML })
-	@Produces
-	public Response createAuftrag(Auftrag auftrag) {
-		//einen Auftrag anlegen
-	}
-	
-	@PUT
-	@Consumes({ APPLICATION_JSON, APPLICATION_XML, TEXT_XML })
-	@Produces
-	public void updateAuftrag(Auftrag auftrag) {
-		//einen Auftrag aendern
-	}
-	
-	@DELETE
-	@Consumes
-	@Produces
-	public void deleteAuftrag(Integer auftragsnr) {
-		//einen Auftrag löschen
-		//in Wirklichkeit wird nicht gelöscht, sondern storniert
-	}
-	*/
 }
