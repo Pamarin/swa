@@ -12,15 +12,12 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 
 import static de.shop.util.Constants.ADD_LINK;
-import static de.shop.util.Constants.FIRST_LINK;
-import static de.shop.util.Constants.LAST_LINK;
 import static de.shop.util.Constants.REMOVE_LINK;
 import static de.shop.util.Constants.SELF_LINK;
 import static de.shop.util.Constants.UPDATE_LINK;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static javax.ws.rs.core.MediaType.APPLICATION_XML;
-import static javax.ws.rs.core.MediaType.TEXT_PLAIN;
 import static javax.ws.rs.core.MediaType.TEXT_XML;
 
 import javax.ws.rs.Produces;
