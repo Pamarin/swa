@@ -31,47 +31,47 @@ public class Auftrag {
 	}
 	
 	@XmlTransient
-	private Integer Nr;
+	private Integer id;
 	@XmlTransient
-	private AuftragsStatus Status;
+	private AuftragsStatus status;
 	@XmlTransient
-	private List<Lieferant> Lieferant;
+	private List<Lieferant> lieferant;
 	@XmlTransient
-	private List<Rechnung> Rechnung;
+	private List<Rechnung> rechnung;
 	
 	/**
 	 * @param nr Auftragsnummer.
 	 */
-	public Auftrag(Integer nr) {
+	public Auftrag(Integer id) {
 		super();
-		setNr(nr);
+		setId(id);
 		setStatus(AuftragsStatus.InBearbeitung);
-		Lieferant = new ArrayList<Lieferant>();
-		Rechnung = new ArrayList<Rechnung>();
+		this.lieferant = new ArrayList<Lieferant>();
+		this.rechnung = new ArrayList<Rechnung>();
 	}
-
+	
 	/**
 	 * @return Auftragsnummer.
 	 */
-	public Integer getNr() {
-		return Nr;
+	public Integer getId() {
+		return id;
 	}
 	
 	/**
-	 * @param nr Auftragsnummer.
+	 * @param id Auftragsnummer.
 	 */
-	public void setNr(Integer nr) {
-		if(nr == null)
-			throw new NullPointerException("Auftragsnummer muss einen Wert haben.");
-		
-		Nr = nr;
+	public void setId(Integer id) {
+		if(id == null)
+			throw new NullPointerException("Id muss einen Wert haben.");
+
+		this.id = id;
 	}
-	
+		
 	/**
 	 * @return Auftragsstatus.
 	 */
 	public AuftragsStatus getStatus() {
-		return Status;
+		return status;
 	}
 	
 	/**
@@ -81,7 +81,7 @@ public class Auftrag {
 		if(status == null)
 			throw new NullPointerException("Auftragsstatus muss einen Wert haben.");
 		
-		Status = status;
+		this.status = status;
 	}
 	
 	/**
@@ -89,10 +89,10 @@ public class Auftrag {
 	 * @throws LieferantException
 	 */
 	public void addLieferant(Lieferant lieferant) throws LieferantException {
-		if(Lieferant.contains(lieferant))
+		if(this.lieferant.contains(lieferant))
 			throw new LieferantException("Lieferant bereits vorhanden.");
 		
-		Lieferant.add(lieferant);
+		this.lieferant.add(lieferant);
 	}
 	
 	/**
@@ -100,10 +100,10 @@ public class Auftrag {
 	 * @throws LieferantException
 	 */
 	public void delLieferant(Lieferant lieferant) throws LieferantException {
-		if(!Lieferant.contains(lieferant))
+		if(!this.lieferant.contains(lieferant))
 			throw new LieferantException("Gesuchter Lieferant nicht vorhanden.");
 		
-		Lieferant.remove(lieferant);
+		this.lieferant.remove(lieferant);
 	}
 	
 	/**
@@ -112,7 +112,7 @@ public class Auftrag {
 	 * @throws LieferantException
 	 */
 	public Lieferant getLieferant(Integer nr) throws LieferantException {		
-		for(Lieferant lieferant : Lieferant) {
+		for(Lieferant lieferant : this.lieferant) {
 			if(lieferant.getNr() == nr)
 				return lieferant;
 		}
@@ -124,7 +124,7 @@ public class Auftrag {
 	 * @return Lieferantenliste.
 	 */
 	public List<Lieferant> getLieferantAll() {
-		return Lieferant;
+		return this.lieferant;
 	}
 	
 	/**
@@ -132,10 +132,10 @@ public class Auftrag {
 	 * @throws RechnungException
 	 */
 	public void addRechnung(Rechnung rechnung) throws RechnungException {
-		if(Rechnung.contains(rechnung))
+		if(this.rechnung.contains(rechnung))
 			throw new RechnungException("Rechnung bereits vorhanden.");
 		
-		Rechnung.add(rechnung);
+		this.rechnung.add(rechnung);
 	}
 	
 	/**
@@ -143,10 +143,10 @@ public class Auftrag {
 	 * @throws RechnungException
 	 */
 	public void delRechnung(Rechnung rechnung) throws RechnungException {
-		if(!Rechnung.contains(rechnung))
+		if(!this.rechnung.contains(rechnung))
 			throw new RechnungException("Gesuchte Rechnung nicht vorhanden.");
 		
-		Rechnung.remove(rechnung);
+		this.rechnung.remove(rechnung);
 	}
 	
 	/**
@@ -155,10 +155,10 @@ public class Auftrag {
 	 * @throws RechnungException
 	 */
 	public Rechnung getRechnung(Integer nr) throws RechnungException {
-		if(Rechnung == null)
+		if(this.rechnung == null)
 			throw new RechnungException("Gesuchte Rechnung nicht vorhanden.");
 		
-		for(Rechnung rechnung : Rechnung) {
+		for(Rechnung rechnung : this.rechnung) {
 			if(rechnung.getNr() == nr)
 				return rechnung;
 		}
@@ -170,28 +170,22 @@ public class Auftrag {
 	 * @return Rechnungsliste.
 	 */
 	public List<Rechnung> getRechnungAll() {
-		return Rechnung;
+		return this.rechnung;
 	}
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#hashCode()
-	 */
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result
-				+ ((Lieferant == null) ? 0 : Lieferant.hashCode());
-		result = prime * result + ((Nr == null) ? 0 : Nr.hashCode());
+				+ ((lieferant == null) ? 0 : lieferant.hashCode());
 		result = prime * result
-				+ ((Rechnung == null) ? 0 : Rechnung.hashCode());
-		result = prime * result + ((Status == null) ? 0 : Status.hashCode());
+				+ ((rechnung == null) ? 0 : rechnung.hashCode());
+		result = prime * result + ((status == null) ? 0 : status.hashCode());
 		return result;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -201,40 +195,37 @@ public class Auftrag {
 		if (getClass() != obj.getClass())
 			return false;
 		Auftrag other = (Auftrag) obj;
-		if (Lieferant == null) {
-			if (other.Lieferant != null)
+		if (id == null) {
+			if (other.id != null)
 				return false;
-		} else if (!Lieferant.equals(other.Lieferant))
+		} else if (!id.equals(other.id))
 			return false;
-		if (Nr == null) {
-			if (other.Nr != null)
+		if (lieferant == null) {
+			if (other.lieferant != null)
 				return false;
-		} else if (!Nr.equals(other.Nr))
+		} else if (!lieferant.equals(other.lieferant))
 			return false;
-		if (Rechnung == null) {
-			if (other.Rechnung != null)
+		if (rechnung == null) {
+			if (other.rechnung != null)
 				return false;
-		} else if (!Rechnung.equals(other.Rechnung))
+		} else if (!rechnung.equals(other.rechnung))
 			return false;
-		if (Status != other.Status)
+		if (status != other.status)
 			return false;
 		return true;
 	}
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
+	
 	@Override
 	public String toString() {
-		return "Auftrag [Nr: " + getNr() + ", Status: " + getStatus()
-				+ ", Lieferant: " + getLieferantAll()
-				+ ", Rechnung: " + getRechnungAll() + "]";
+		return "Auftrag [getId()=" + getId() + ", getStatus()=" + getStatus()
+				+ ", getLieferantAll()=" + getLieferantAll()
+				+ ", getRechnungAll()=" + getRechnungAll() + "]";
 	}
-	
+
 	@POST
 	public Response createAuftrag(Auftrag auftrag) {
 		//einen neuen Auftrag anlegen
-		URI myuri = URI.create("http://.../auftrag/" + getNr());
+		URI myuri = URI.create("http://.../auftrag/" + getId());
 		return Response.created(myuri)
 					   .build();
 	}
