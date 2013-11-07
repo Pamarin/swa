@@ -38,7 +38,7 @@ public class Kunde implements Serializable {
 	 */
 	private static final long serialVersionUID = -423737514968775456L;
 	
-	private URI auftraegeUri1;
+	private URI bestellungenUri;
 
 	@Id
 	@GeneratedValue
@@ -90,11 +90,11 @@ public class Kunde implements Serializable {
 	private URI auftraegeUri;
 
 	public URI getAuftraegeUri() {
-		return auftraegeUri1;
+		return auftraegeUri;
 	}
 
 	public void setAuftraegeUri(URI auftraegeUri) {
-		this.auftraegeUri1 = auftraegeUri;
+		this.auftraegeUri = auftraegeUri;
 	}
 
 	public void setValues(Kunde k) {
@@ -199,11 +199,11 @@ public class Kunde implements Serializable {
 		return this;
 	}
 	
-	public URI getAuftraegeUri1() {
-		return auftraegeUri1;
+	public URI getBestellungenUri() {
+		return bestellungenUri;
 	}
 	public void setBestellungenUri(URI bestellungenUri) {
-		this.auftraegeUri1 = bestellungenUri;
+		this.bestellungenUri = bestellungenUri;
 	}
 
 	@Override
