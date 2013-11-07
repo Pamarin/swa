@@ -37,6 +37,8 @@ public class Kunde implements Serializable {
 	 * @author Jan Krieghoff
 	 */
 	private static final long serialVersionUID = -423737514968775456L;
+	
+	private URI auftraegeUri1;
 
 	@Id
 	@GeneratedValue
@@ -88,11 +90,11 @@ public class Kunde implements Serializable {
 	private URI auftraegeUri;
 
 	public URI getAuftraegeUri() {
-		return auftraegeUri;
+		return auftraegeUri1;
 	}
 
 	public void setAuftraegeUri(URI auftraegeUri) {
-		this.auftraegeUri = auftraegeUri;
+		this.auftraegeUri1 = auftraegeUri;
 	}
 
 	public void setValues(Kunde k) {
@@ -195,6 +197,13 @@ public class Kunde implements Serializable {
 		}
 		auftraege.add(auftrag);
 		return this;
+	}
+	
+	public URI getAuftraegeUri1() {
+		return auftraegeUri1;
+	}
+	public void setBestellungenUri(URI bestellungenUri) {
+		this.auftraegeUri1 = bestellungenUri;
 	}
 
 	@Override
