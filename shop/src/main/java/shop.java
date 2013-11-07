@@ -23,30 +23,30 @@ import de.shop.bestellverwaltung.domain.Auftrag;
 @Produces({ APPLICATION_JSON, APPLICATION_XML + ";qs=0.75", TEXT_XML + ";qs=0.75" })
 public class shop {
 	@XmlTransient
-	private List<Auftrag> Aufträge;
+	private List<Auftrag> Auftraege;
 
 	/**
-	 * @param aufträge
+	 * @param auftraege
 	 */
 	public shop() {
 		super();
-		Aufträge = new ArrayList<Auftrag>();
+		Auftraege = new ArrayList<Auftrag>();
 	}
 
 	@GET
 	@Path("auftrag")
 	public Response getAuftragAll() {
-		//alle Aufträge holen
+		//alle Auftraege holen
 		Link self = Link.fromUri("https://.../auftrag")
 						.rel("self")
 						.build();
-		Link first = Link.fromUri("https://.../auftrag/" + Aufträge.get(0).getNr())
+		Link first = Link.fromUri("https://.../auftrag/" + Auftraege.get(0).getNr())
 						 .rel("first")
 						 .build();
-		Link last = Link.fromUri("https://.../auftrag/" + Aufträge.get(Aufträge.size() - 1).getNr())
+		Link last = Link.fromUri("https://.../auftrag/" + Auftraege.get(Auftraege.size() - 1).getNr())
 						.rel("last")
 						.build();
-		return Response.ok(new GenericEntity<List<Auftrag>>(Aufträge) {})
+		return Response.ok(new GenericEntity<List<Auftrag>>(Auftraege) {})
 					   .links(self, first, last)
 					   .build();
 	}
@@ -71,7 +71,7 @@ public class shop {
 						  .rel("update")
 						  .build();
 		
-		for(Auftrag auftrag : Aufträge) {
+		for(Auftrag auftrag : Auftraege) {
 			if(auftrag.getNr().equals(auftragsnr))
 				return Response.ok(auftrag)
 							   .links(self, list, add, update, remove)
@@ -123,7 +123,7 @@ public class shop {
 	@Consumes({ APPLICATION_JSON, APPLICATION_XML, TEXT_XML })
 	@Produces
 	public void updateAuftrag(Auftrag auftrag) {
-		//einen Auftrag ändern
+		//einen Auftrag aendern
 	}
 	
 	@DELETE
