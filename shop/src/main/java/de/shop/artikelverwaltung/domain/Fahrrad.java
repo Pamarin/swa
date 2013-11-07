@@ -4,47 +4,31 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 public class Fahrrad {
-	
-	enum Farbe{
-		weiss,
-		schwarz,
-		grau,
-		rot,
-		blau,
-		gelb,
-		gruen,
-		bunt,
+
+	enum Farbe {
+		weiss, schwarz, grau, rot, blau, gelb, gruen, bunt,
 	}
-	
+
 	enum Kategorie {
-		Mountainbike,
-		Tandem,
-		BMX,
-		Rennrad,
-		Einrad,
-		Laufrad,
-		Strassenfahrrad,
-		Liegerad,
-		Hochrad,
+		Mountainbike, Tandem, BMX, Rennrad, Einrad, Laufrad, Strassenfahrrad, Liegerad, Hochrad,
 	}
-	
+
 	enum Art {
-		Herrenrad,
-		Damenrad,
-		Kinderfahrrad,
+		Herrenrad, Damenrad, Kinderfahrrad,
 	}
+
 	@Size(min = 1, max = 2)
 	@Pattern(regexp = "[0-9][0-9]")
 	private String gaenge;
-	
+
 	@Size(min = 1, max = 2)
 	@Pattern(regexp = "[0-9][0-9]")
 	private String zollgroesse;
-	
-	@Size(min =2, max = 3)
-	@Pattern(regexp="[0-9]")
+
+	@Size(min = 2, max = 3)
+	@Pattern(regexp = "[0-9]")
 	private String rahmenhoehe;
-	
+
 	private boolean strassenzulassung;
 
 	public String getGaenge() {
@@ -131,6 +115,5 @@ public class Fahrrad {
 				+ ", isStrassenzulassung()=" + isStrassenzulassung()
 				+ ", hashCode()=" + hashCode() + "]";
 	}
-	
 
 }
