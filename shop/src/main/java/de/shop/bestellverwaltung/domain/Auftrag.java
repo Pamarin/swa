@@ -1,21 +1,42 @@
 package de.shop.bestellverwaltung.domain;
+import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
+import static javax.ws.rs.core.MediaType.APPLICATION_XML;
+import static javax.ws.rs.core.MediaType.TEXT_XML;
+
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ws.rs.Consumes;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.Response;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
 
 /**
- * @author Jean
+ * @author Jean-Luc Burot
  *
  */
+@XmlRootElement
+@Path("auftrag")
+@Produces({ APPLICATION_JSON, APPLICATION_XML + ";qs=0.75", TEXT_XML + ";qs=0.75"})
+@Consumes
 public class Auftrag {
 	enum AuftragsStatus {
 		InBearbeitung,
 		Abgeschlossen
 	}
 	
+	@XmlTransient
 	private Integer Nr;
+	@XmlTransient
 	private AuftragsStatus Status;
+	@XmlTransient
 	private List<Lieferant> Lieferant;
+	@XmlTransient
 	private List<Rechnung> Rechnung;
 	
 	/**
@@ -208,5 +229,13 @@ public class Auftrag {
 		return "Auftrag [Nr: " + getNr() + ", Status: " + getStatus()
 				+ ", Lieferant: " + getLieferantAll()
 				+ ", Rechnung: " + getRechnungAll() + "]";
+	}
+	
+	@POST
+	public Response createAuftrag(Auftrag auftrag) {
+		//einen neuen Auftrag anlegen
+		URI myuri = URI.create("http://.../auftrag/" + getNr());
+		return Response.created(myuri)
+					   .build();
 	}
 }

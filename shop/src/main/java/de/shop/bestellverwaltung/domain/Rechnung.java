@@ -2,10 +2,20 @@ package de.shop.bestellverwaltung.domain;
 
 import java.math.BigDecimal;
 
-public class Rechnung {
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
+/**
+ * @author Jean-Luc Burot
+ *
+ */
+@XmlRootElement
+public class Rechnung {
+	@XmlTransient
 	private Integer Nr;
+	@XmlTransient
 	private Boolean IstBezahlt;
+	@XmlTransient
 	private BigDecimal Summe;
 	
 	/**

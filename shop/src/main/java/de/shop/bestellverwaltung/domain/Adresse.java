@@ -1,9 +1,21 @@
 package de.shop.bestellverwaltung.domain;
 
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
+/**
+ * @author Jean-Luc Burot
+ *
+ */
+@XmlRootElement
 public class Adresse {
+	@XmlTransient
 	private String Strasse;
+	@XmlTransient
 	private String PLZ;
+	@XmlTransient
 	private String Stadt;
+	@XmlTransient
 	private String Land;
 	
 	/**

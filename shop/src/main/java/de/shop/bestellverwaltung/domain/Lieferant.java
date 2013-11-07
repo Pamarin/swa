@@ -1,9 +1,21 @@
 package de.shop.bestellverwaltung.domain;
 
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
+/**
+ * @author Jean-Luc Burot
+ *
+ */
+@XmlRootElement
 public class Lieferant {
+	@XmlTransient
 	private Integer Nr;
+	@XmlTransient
 	private String Name;
+	@XmlTransient
 	private Adresse AdresseLieferant;
+	@XmlTransient
 	private Integer Lieferzeit;
 	
 	/**
