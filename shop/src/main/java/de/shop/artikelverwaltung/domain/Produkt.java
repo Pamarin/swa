@@ -10,60 +10,60 @@ import java.math.BigDecimal;
 public class Produkt {
 	// geschrieben von Marvin
 	// ToDo Beans Validation für Verfügbarkeit
-	
-	enum Verfügbarkeit{
-		istVerfügbar,
-		istNichtVerfügbar,
-		istNachbestellt,
+
+	enum Verfügbarkeit {
+		istVerfügbar, istNichtVerfügbar, istNachbestellt, istNichtMehrImSortiment,
 	}
-	
+
 	@NotNull
-	@Pattern (regexp = "\\d{8}")
+	@Pattern(regexp = "\\d{8}")
 	private String produktnummer;
-	
-	@NotNull																//sinnvoll?
-	@Size(min =3, max = 30)
-	@Pattern(regexp = "[A-Z0123456789][a-z0123456789][a-z 0123456789]+")	// \w?
+
+	@NotNull
+	// sinnvoll?
+	@Size(min = 3, max = 30)
+	@Pattern(regexp = "[A-Z0123456789][a-z0123456789][a-z 0123456789]")
+	// \w?
 	private String bezeichnung;
-	
+
 	@NotNull
 	@DecimalMin("0,99")
 	private BigDecimal preis;
-	
+
 	private Verfügbarkeit Status;
-	
+
 	public BigDecimal getPreis() {
 		return preis;
 	}
-	
+
 	public void setPreis(BigDecimal preis) {
 		this.preis = preis;
 	}
-	
+
 	public String getBezeichnung() {
 		return bezeichnung;
 	}
-	
+
 	public void setBezeichnung(String bezeichnung) {
 		this.bezeichnung = bezeichnung;
 	}
-	
+
 	public String getProduktnummer() {
 		return produktnummer;
 	}
-	
+
 	public void setProduktnummer(String produktnummer) {
 		this.produktnummer = produktnummer;
 	}
-	
+
 	public Verfügbarkeit getStatus() {
 		return Status;
 	}
-	
+
 	public void setStatus(Verfügbarkeit status) {
 		Status = status;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -76,7 +76,7 @@ public class Produkt {
 		result = prime * result + ((preis == null) ? 0 : preis.hashCode());
 		return result;
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -105,7 +105,7 @@ public class Produkt {
 			return false;
 		return true;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Produkt [getPreis()=" + getPreis() + ", getBezeichnung()="
