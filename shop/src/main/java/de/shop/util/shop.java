@@ -53,7 +53,7 @@ public class shop {
 	}
 	
 	@GET
-	@Path("auftrag/{auftragsnr:[1-9][0-9]*}")
+	@Path("auftrag/{auftragsid:[1-9][0-9]*}")
 	public Response getAuftrag(@PathParam("auftragsid") Integer auftragsid) {
 		//einen bestimmten Auftrag holen
 		Link self = Link.fromUri("https://.../auftrag/" + auftragsid)
