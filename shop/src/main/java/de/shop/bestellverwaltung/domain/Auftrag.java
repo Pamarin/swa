@@ -103,13 +103,13 @@ public class Auftrag {
 	}
 	
 	/**
-	 * @param nr Lieferantennummer.
+	 * @param id Lieferantennummer.
 	 * @return Lieferant.
 	 * @throws LieferantException
 	 */
-	public Lieferant getLieferant(Integer nr) throws LieferantException {		
+	public Lieferant getLieferant(Long id) throws LieferantException {		
 		for(Lieferant lieferant : this.lieferant) {
-			if(lieferant.getNr() == nr)
+			if(lieferant.getId() == id)
 				return lieferant;
 		}
 		
@@ -146,16 +146,16 @@ public class Auftrag {
 	}
 	
 	/**
-	 * @param nr Rechnungsnummer.
+	 * @param id Rechnungsnummer.
 	 * @return Rechnung.
 	 * @throws RechnungException
 	 */
-	public Rechnung getRechnung(Integer nr) throws RechnungException {
+	public Rechnung getRechnung(Long id) throws RechnungException {
 		if(this.rechnung == null)
 			throw new RechnungException("Gesuchte Rechnung nicht vorhanden.");
 		
 		for(Rechnung rechnung : this.rechnung) {
-			if(rechnung.getNr() == nr)
+			if(rechnung.getId() == id)
 				return rechnung;
 		}
 		

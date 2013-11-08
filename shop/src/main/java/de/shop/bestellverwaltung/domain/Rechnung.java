@@ -12,46 +12,47 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 public class Rechnung {
 	@XmlTransient
-	private Integer Nr;
+	private Long id;
 	@XmlTransient
-	private Boolean IstBezahlt;
+	private Boolean istBezahlt;
 	@XmlTransient
-	private BigDecimal Summe;
+	private BigDecimal summe;
 	
+	/**
+	 * 
+	 */
+	public Rechnung() {
+		super();
+	}
+
 	/**
 	 * @param nr Rechnungsnummer.
 	 * @param istBezahlt Bezahltstatus.
 	 * @param summe Monetärer Betrag.
 	 */
-	public Rechnung(Integer nr, Boolean istBezahlt, BigDecimal summe) {
+	public Rechnung(Long nr, Boolean istBezahlt, BigDecimal summe) {
 		super();
-		setNr(nr);
+		setId(nr);
 		setIstBezahlt(istBezahlt);
 		setSumme(summe);
 	}
 
-	/**
-	 * @return Rechnungsnummer.
-	 */
-	public Integer getNr() {
-		return Nr;
+	public Long getId() {
+		return id;
 	}
 
-	/**
-	 * @param nr Rechnungsnummer.
-	 */
-	public void setNr(Integer nr) {
-		if(nr == null)
+	public void setId(Long id) {
+		if(id == null)
 			throw new NullPointerException("Rechnungsnummer darf nicht leer sein.");
-		
-		Nr = nr;
+
+		this.id = id;
 	}
 
 	/**
 	 * @return Bezahltstatus.
 	 */
 	public Boolean getIstBezahlt() {
-		return IstBezahlt;
+		return istBezahlt;
 	}
 
 	/**
@@ -61,14 +62,14 @@ public class Rechnung {
 		if(istBezahlt == null)
 			throw new NullPointerException("Bezahlungsstatus muss richtig oder falsch sein.");
 		
-		IstBezahlt = istBezahlt;
+		this.istBezahlt = istBezahlt;
 	}
 
 	/**
 	 * @return Monetäre Summe.
 	 */
 	public BigDecimal getSumme() {
-		return Summe;
+		return summe;
 	}
 
 	/**
@@ -78,26 +79,20 @@ public class Rechnung {
 		if(summe == null || summe.compareTo(new BigDecimal(0)) < 0)
 			throw new NullPointerException("Summe muss einen positiven oder neutralen Wert haben.");
 		
-		Summe = summe;
+		this.summe = summe;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#hashCode()
-	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result
-				+ ((IstBezahlt == null) ? 0 : IstBezahlt.hashCode());
-		result = prime * result + ((Nr == null) ? 0 : Nr.hashCode());
-		result = prime * result + ((Summe == null) ? 0 : Summe.hashCode());
+				+ ((istBezahlt == null) ? 0 : istBezahlt.hashCode());
+		result = prime * result + ((summe == null) ? 0 : summe.hashCode());
 		return result;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -107,30 +102,27 @@ public class Rechnung {
 		if (getClass() != obj.getClass())
 			return false;
 		Rechnung other = (Rechnung) obj;
-		if (IstBezahlt == null) {
-			if (other.IstBezahlt != null)
+		if (id == null) {
+			if (other.id != null)
 				return false;
-		} else if (!IstBezahlt.equals(other.IstBezahlt))
+		} else if (!id.equals(other.id))
 			return false;
-		if (Nr == null) {
-			if (other.Nr != null)
+		if (istBezahlt == null) {
+			if (other.istBezahlt != null)
 				return false;
-		} else if (!Nr.equals(other.Nr))
+		} else if (!istBezahlt.equals(other.istBezahlt))
 			return false;
-		if (Summe == null) {
-			if (other.Summe != null)
+		if (summe == null) {
+			if (other.summe != null)
 				return false;
-		} else if (!Summe.equals(other.Summe))
+		} else if (!summe.equals(other.summe))
 			return false;
 		return true;
 	}
-	
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
+
 	@Override
 	public String toString() {
-		return "Rechnung [Nr: " + getNr() + ", bezahlt: "
-				+ getIstBezahlt() + ", Summe: " + getSumme() + "]";
+		return "Rechnung [getId()=" + getId() + ", getIstBezahlt()="
+				+ getIstBezahlt() + ", getSumme()=" + getSumme() + "]";
 	}
 }

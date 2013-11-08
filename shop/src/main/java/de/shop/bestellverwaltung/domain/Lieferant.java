@@ -12,23 +12,30 @@ import de.shop.util.Adresse;
 @XmlRootElement
 public class Lieferant {
 	@XmlTransient
-	private Integer Nr;
+	private Long id;
 	@XmlTransient
-	private String Name;
+	private String name;
 	@XmlTransient
-	private Adresse AdresseLieferant;
+	private Adresse adresseLieferant;
 	@XmlTransient
-	private Integer Lieferzeit;
+	private Integer lieferzeit;
 	
+	/**
+	 * 
+	 */
+	public Lieferant() {
+		super();
+	}
+
 	/**
 	 * @param nr Lieferantennummer.
 	 * @param name Lieferantenname.
 	 * @param adresseLieferant Lieferantenadresse.
 	 * @param lieferzeit Lieferzeit.
 	 */
-	public Lieferant(Integer nr, String name, Adresse adresseLieferant, Integer lieferzeit) {
+	public Lieferant(Long nr, String name, Adresse adresseLieferant, Integer lieferzeit) {
 		super();
-		setNr(nr);
+		setId(nr);
 		setName(name);
 		setAdresseLieferant(adresseLieferant);
 		setLieferzeit(lieferzeit);
@@ -38,7 +45,7 @@ public class Lieferant {
 	 * @return Lieferzeit.
 	 */
 	public Integer getLieferzeit() {
-		return Lieferzeit;
+		return lieferzeit;
 	}
 
 	/**
@@ -50,14 +57,14 @@ public class Lieferant {
 		if(lieferzeit <= 0)
 			throw new NullPointerException("Lieferant muss Lieferzeit >0 Tage haben.");
 		
-		Lieferzeit = lieferzeit;
+		this.lieferzeit = lieferzeit;
 	}
 
 	/**
 	 * @return Lieferantenadresse.
 	 */
 	public Adresse getAdresseLieferant() {
-		return AdresseLieferant;
+		return adresseLieferant;
 	}
 
 	/**
@@ -67,31 +74,31 @@ public class Lieferant {
 		if(adresseLieferant == null)
 			throw new NullPointerException("Lieferant muss Adresse haben.");
 		
-		AdresseLieferant = adresseLieferant;
+		this.adresseLieferant = adresseLieferant;
 	}
 	
 	/**
 	 * @return Lieferantennummer.
 	 */
-	public Integer getNr() {
-		return Nr;
+	public Long getId() {
+		return id;
 	}
 
 	/**
-	 * @param nr Lieferantennummer.
+	 * @param id Lieferantennummer.
 	 */
-	public void setNr(Integer nr) {
-		if(nr == null)
+	public void setId(Long id) {
+		if(id == null)
 			throw new NullPointerException("Lieferantennummer darf nicht leer sein.");
-		
-		Nr = nr;
+
+		this.id = id;
 	}
 	
 	/**
 	 * @return Lieferantenname.
 	 */
 	public String getName() {
-		return Name;
+		return name;
 	}
 	
 	/**
@@ -101,29 +108,23 @@ public class Lieferant {
 		if(name == null || name == "")
 			throw new NullPointerException("Lieferantenname darf nicht leer sein.");
 		
-		Name = name;
+		this.name = name;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#hashCode()
-	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime
 				* result
-				+ ((AdresseLieferant == null) ? 0 : AdresseLieferant.hashCode());
+				+ ((adresseLieferant == null) ? 0 : adresseLieferant.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result
-				+ ((Lieferzeit == null) ? 0 : Lieferzeit.hashCode());
-		result = prime * result + ((Name == null) ? 0 : Name.hashCode());
-		result = prime * result + ((Nr == null) ? 0 : Nr.hashCode());
+				+ ((lieferzeit == null) ? 0 : lieferzeit.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -133,35 +134,33 @@ public class Lieferant {
 		if (getClass() != obj.getClass())
 			return false;
 		Lieferant other = (Lieferant) obj;
-		if (AdresseLieferant == null) {
-			if (other.AdresseLieferant != null)
+		if (adresseLieferant == null) {
+			if (other.adresseLieferant != null)
 				return false;
-		} else if (!AdresseLieferant.equals(other.AdresseLieferant))
+		} else if (!adresseLieferant.equals(other.adresseLieferant))
 			return false;
-		if (Lieferzeit == null) {
-			if (other.Lieferzeit != null)
+		if (id == null) {
+			if (other.id != null)
 				return false;
-		} else if (!Lieferzeit.equals(other.Lieferzeit))
+		} else if (!id.equals(other.id))
 			return false;
-		if (Name == null) {
-			if (other.Name != null)
+		if (lieferzeit == null) {
+			if (other.lieferzeit != null)
 				return false;
-		} else if (!Name.equals(other.Name))
+		} else if (!lieferzeit.equals(other.lieferzeit))
 			return false;
-		if (Nr == null) {
-			if (other.Nr != null)
+		if (name == null) {
+			if (other.name != null)
 				return false;
-		} else if (!Nr.equals(other.Nr))
+		} else if (!name.equals(other.name))
 			return false;
 		return true;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
 	@Override
 	public String toString() {
-		return "Lieferant [Nr: " + getNr() + ", Name: " + getName()
-				+ ", Adresse: " + getAdresseLieferant() + "]";
+		return "Lieferant [getLieferzeit()=" + getLieferzeit()
+				+ ", getAdresseLieferant()=" + getAdresseLieferant()
+				+ ", getId()=" + getId() + ", getName()=" + getName() + "]";
 	}
 }

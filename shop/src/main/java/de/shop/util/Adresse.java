@@ -121,6 +121,36 @@ public class Adresse implements Serializable {
 		//TODO Plausibilität prüfen
 		this.strasse = strasse;
 	}
+	
+	/**
+	 * 
+	 */
+	public Adresse() {
+		super();
+	}
+
+	/**
+	 * @param id
+	 * @param aktualisiert
+	 * @param erzeugt
+	 * @param strasse
+	 * @param hausnummer
+	 * @param plz
+	 * @param ort
+	 * @param land
+	 */
+	public Adresse(Long id, Date aktualisiert, Date erzeugt, String strasse,
+			String hausnummer, String plz, String ort, String land) {
+		super();
+		setId(id);
+		setAktualisiert(aktualisiert);
+		setErzeugt(erzeugt);
+		setStrasse(strasse);
+		setHausnummer(hausnummer);
+		setPlz(plz);
+		setOrt(ort);
+		setLand(land);
+	}
 
 	@Override
 	public int hashCode() {

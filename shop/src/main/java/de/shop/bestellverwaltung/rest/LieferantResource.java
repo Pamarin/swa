@@ -21,7 +21,7 @@ import javax.ws.rs.core.Link;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
-import de.shop.bestellverwaltung.domain.Auftrag;
+import de.shop.bestellverwaltung.domain.Lieferant;
 import de.shop.util.Mock;
 import de.shop.util.NotFoundException;
 import de.shop.util.UriHelper;
@@ -29,11 +29,11 @@ import de.shop.util.UriHelper;
 /**
  * @author Jean-Luc Burot
  */
-@Path("/auftrag")
+@Path("/lieferant")
 @Produces({ APPLICATION_JSON, APPLICATION_XML + ";qs=0.75", TEXT_XML + ";qs=0.5" })
 @Consumes
-public class AuftragResource {
-	public static final String AUFTRAGS_ID_PATH_PARAM = "auftragsid";
+public class LieferantResource {
+	public static final String LIEFERANTEN_ID_PATH_PARAM = "lieferantenid";
 	
 	@Context
 	private UriInfo uriInfo;
@@ -42,54 +42,54 @@ public class AuftragResource {
 	
 	@GET
 	@Path("{id:[1-9][0-9]*}")
-	public Response findAuftragById(@PathParam("id") Long id) {
+	public Response findLieferantById(@PathParam("id") Long id) {
 		// TODO Anwendungskern statt Mock, Verwendung von Locale
-		final Auftrag auftrag = Mock.findAuftragById(id);
-		if (auftrag == null)
-			throw new NotFoundException("Kein Auftrag mit der ID " + id + " gefunden.");
+		final Lieferant lieferant = Mock.findLieferantById(id);
+		if (lieferant == null)
+			throw new NotFoundException("Kein Lieferant mit der ID " + id + " gefunden.");
 		
 		// Link-Header setzen
-		final Response response = Response.ok(auftrag)
-                                          .links(getTransitionalLinks(auftrag, uriInfo))
+		final Response response = Response.ok(lieferant)
+                                          .links(getTransitionalLinks(lieferant, uriInfo))
                                           .build();
 		
 		return response;
 	}
 	
-	private Link[] getTransitionalLinks(Auftrag auftrag, UriInfo uriInfo) {
-		final Link self = Link.fromUri(getUriAuftrag(auftrag, uriInfo))
+	private Link[] getTransitionalLinks(Lieferant lieferant, UriInfo uriInfo) {
+		final Link self = Link.fromUri(getUriLieferant(lieferant, uriInfo))
                               .rel(SELF_LINK)
                               .build();
 		return new Link[] { self };
 	}
 	
-	public URI getUriAuftrag(Auftrag auftrag, UriInfo uriInfo) {
-		return uriHelper.getUri(AuftragResource.class, "findAuftragById", auftrag.getId(), uriInfo);
+	public URI getUriLieferant(Lieferant lieferant, UriInfo uriInfo) {
+		return uriHelper.getUri(LieferantResource.class, "findLieferantById", lieferant.getId(), uriInfo);
 	}
 
 	
 	@POST
 	@Consumes({APPLICATION_JSON, APPLICATION_XML, TEXT_XML })
 	@Produces
-	public Response createAuftrag(Auftrag auftrag) {
+	public Response createLieferant(Lieferant lieferant) {
 		// TODO Anwendungskern statt Mock, Verwendung von Locale
-		return Response.created(getUriAuftrag(Mock.createAuftrag(auftrag), uriInfo))
+		return Response.created(getUriLieferant(Mock.createLieferant(lieferant), uriInfo))
 			           .build();
 	}
 	
 	@PUT
 	@Consumes({APPLICATION_JSON, APPLICATION_XML, TEXT_XML })
 	@Produces
-	public void updateAuftrag(Auftrag auftrag) {
+	public void updateLieferant(Lieferant lieferant) {
 		// TODO Anwendungskern statt Mock, Verwendung von Locale
-		Mock.updateAuftrag(auftrag);
+		Mock.updateLieferant(lieferant);
 	}
 	
 	@DELETE
 	@Path("{id:[1-9][0-9]*}")
 	@Produces
-	public void deleteAuftrag(@PathParam("id") Long auftragId) {
+	public void deleteLieferant(@PathParam("id") Long liefernantId) {
 		// TODO Anwendungskern statt Mock, Verwendung von Locale
-		Mock.deleteAuftrag(auftragId);
+		Mock.deleteLieferant(liefernantId);
 	}
 }
