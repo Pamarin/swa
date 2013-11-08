@@ -33,7 +33,7 @@ import de.shop.util.UriHelper;
 @Produces({ APPLICATION_JSON, APPLICATION_XML + ";qs=0.75", TEXT_XML + ";qs=0.5" })
 @Consumes
 public class RechnungResource {
-	public static final String LIEFERANTEN_ID_PATH_PARAM = "rechnungenid";
+	public static final String LIEFERANTEN_ID_PATH_PARAM = "id";
 	
 	@Context
 	private UriInfo uriInfo;
@@ -42,7 +42,7 @@ public class RechnungResource {
 	
 	@GET
 	@Path("{id:[1-9][0-9]*}")
-	public Response findRechnungById(@PathParam("id") Long id) {
+	public Response findRechnungById(@PathParam(LIEFERANTEN_ID_PATH_PARAM) Long id) {
 		// TODO Anwendungskern statt Mock, Verwendung von Locale
 		final Rechnung rechnung = Mock.findRechnungById(id);
 		if (rechnung == null)

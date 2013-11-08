@@ -33,7 +33,7 @@ import de.shop.util.UriHelper;
 @Produces({ APPLICATION_JSON, APPLICATION_XML + ";qs=0.75", TEXT_XML + ";qs=0.5" })
 @Consumes
 public class LieferantResource {
-	public static final String LIEFERANTEN_ID_PATH_PARAM = "lieferantenid";
+	public static final String LIEFERANTEN_ID_PATH_PARAM = "id";
 	
 	@Context
 	private UriInfo uriInfo;
