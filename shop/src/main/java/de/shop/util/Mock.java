@@ -14,6 +14,7 @@ import de.shop.kundenverwaltung.domain.Kunde;
 
 /**
  * Emulation des Anwendungskerns
+ * @author Jean-Luc Burot, Jan Krieghoff
  */
 public final class Mock {
 	private static final int MAX_ID = 99;
