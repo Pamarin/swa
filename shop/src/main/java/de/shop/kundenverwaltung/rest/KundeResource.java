@@ -86,7 +86,7 @@ public class KundeResource {
 	}
 	
 	private URI getUriBestellungen(Kunde kunde, UriInfo uriInfo) {
-		return uriHelper.getUri(KundeResource.class, "findBestellungenByKundeId", kunde.getKundeID(), uriInfo);
+		return uriHelper.getUri(KundeResource.class, "findBestellungenByKundeId", kunde.getid(), uriInfo);
 	}
 	
 	public Link[] getTransitionalLinks(Kunde kunde, UriInfo uriInfo) {
@@ -102,7 +102,7 @@ public class KundeResource {
                                 .rel(UPDATE_LINK)
                                 .build();
 
-		final Link remove = Link.fromUri(uriHelper.getUri(KundeResource.class, "deleteKunde", kunde.getKundeID(), uriInfo))
+		final Link remove = Link.fromUri(uriHelper.getUri(KundeResource.class, "deleteKunde", kunde.getid(), uriInfo))
                                 .rel(REMOVE_LINK)
                                 .build();
 		
@@ -110,7 +110,7 @@ public class KundeResource {
 	}
 	
 	public URI getUriKunde(Kunde kunde, UriInfo uriInfo) {
-		return uriHelper.getUri(KundeResource.class, "findKundeById", kunde.getKundeID(), uriInfo);
+		return uriHelper.getUri(KundeResource.class, "findKundeById", kunde.getid(), uriInfo);
 	}
 	
 	

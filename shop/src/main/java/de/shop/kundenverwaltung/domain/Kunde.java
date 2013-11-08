@@ -43,9 +43,9 @@ public class Kunde implements Serializable {
 
 	@Id
 	@GeneratedValue
-	@Column(name = "kunde_ID", nullable = false, updatable = false)
+	@Column(name = "id", nullable = false, updatable = false)
 	@XmlAttribute
-	private Long kundeID;
+	private Long id;
 
 	@Column(name = "aktualisiert", nullable = false)
 	@Temporal(TIMESTAMP)
@@ -79,7 +79,7 @@ public class Kunde implements Serializable {
 	private String telefon;
 
 	@Valid
-	private Adresse anschrift;
+	private Adresse adresse;
 
 	@JoinColumn(name = "kunde_fk", nullable = false)
 	@OrderColumn(name = "idx", nullable = false)
@@ -104,12 +104,12 @@ public class Kunde implements Serializable {
 		eMail = k.eMail;
 	}
 
-	public Long getKundeID() {
-		return this.kundeID;
+	public Long getid() {
+		return this.id;
 	}
 
-	public void setKundeID(Long kundeID) {
-		this.kundeID = kundeID;
+	public void setid(Long id) {
+		this.id = id;
 	}
 
 	public Date getAktualisiert() {
@@ -168,12 +168,12 @@ public class Kunde implements Serializable {
 		this.vorname = vorname;
 	}
 
-	public Adresse getAnschrift() {
-		return anschrift;
+	public Adresse getAdresse() {
+		return adresse;
 	}
 
-	public void setAnschrift(Adresse anschrift) {
-		this.anschrift = anschrift;
+	public void setAdresse(Adresse adresse) {
+		this.adresse = adresse;
 	}
 
 	public List<Auftrag> getAuftraege() {
@@ -211,7 +211,7 @@ public class Kunde implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((kundeID == null) ? 0 : kundeID.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
 
@@ -224,20 +224,20 @@ public class Kunde implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Kunde other = (Kunde) obj;
-		if (kundeID == null) {
-			if (other.kundeID != null)
+		if (id == null) {
+			if (other.id != null)
 				return false;
 		}
-		else if (!kundeID.equals(other.kundeID))
+		else if (!id.equals(other.id))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Kunde [kundeID=" + kundeID + ", anrede=" + anrede + ", eMail="
+		return "Kunde [id=" + id + ", anrede=" + anrede + ", eMail="
 				+ eMail + ", nachname=" + nachname + ", telefon=" + telefon
-				+ ", vorname=" + vorname + ", anschrift=" + anschrift + "]";
+				+ ", vorname=" + vorname + ", adresse=" + adresse + "]";
 	}
 
 }
