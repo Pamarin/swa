@@ -64,7 +64,7 @@ public final class Mock {
 			return null;
 		
 		final Kunde kunde = new Kunde();
-		kunde.setKundeID(id);
+		kunde.setid(id);
 		kunde.setNachname("Nachname" + id);
 		kunde.setEMail("" + id + "@hska.de");
 		
@@ -72,7 +72,12 @@ public final class Mock {
 		adresse.setId(id + 1);        // andere ID fuer die Adresse
 		adresse.setPlz("12345");
 		adresse.setOrt("Testort");
-		kunde.setAnschrift(adresse);
+		kunde.setNachname("Mustermann");
+		kunde.setVorname("Max");
+		kunde.setAnrede("Herr");
+		kunde.setEMail("test@mail.com");
+		kunde.setTelefon("072112345");
+		kunde.setAdresse(new Adresse((long) 5, new Date(), new Date(), "Musterallee","101","76327","Pfinztal","Deutschland"));
 		
 		return kunde;
 	}
@@ -140,10 +145,17 @@ public final class Mock {
 		// Neue IDs fuer Kunde und zugehoerige Adresse
 		// Ein neuer Kunde hat auch keine Bestellungen
 		final String nachname = kunde.getNachname();
-		kunde.setKundeID(Long.valueOf(nachname.length()));
-		final Adresse anschrift = kunde.getAnschrift();
-		anschrift.setId((Long.valueOf(nachname.length())) + 1);
+		kunde.setid(Long.valueOf(nachname.length()));
+		final Adresse adresse = kunde.getAdresse();
+		adresse.setId((Long.valueOf(nachname.length())) + 1);
 		kunde.setAuftraege(null);
+		
+		kunde.setNachname("Mustermann");
+		kunde.setVorname("Max");
+		kunde.setAnrede("Herr");
+		kunde.setEMail("test@mail.com");
+		kunde.setTelefon("072112345");
+		kunde.setAdresse(new Adresse((long) 5, new Date(), new Date(), "Musterallee","101","76327","Pfinztal","Deutschland"));
 		
 		System.out.println("Neuer Kunde: " + kunde);
 		return kunde;
