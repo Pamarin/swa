@@ -3,6 +3,7 @@ package de.shop.kundenverwaltung.rest;
 import java.net.URI;
 
 import javax.inject.Inject;
+import javax.validation.Valid;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -15,7 +16,6 @@ import static de.shop.util.Constants.ADD_LINK;
 import static de.shop.util.Constants.REMOVE_LINK;
 import static de.shop.util.Constants.SELF_LINK;
 import static de.shop.util.Constants.UPDATE_LINK;
-
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static javax.ws.rs.core.MediaType.APPLICATION_XML;
 import static javax.ws.rs.core.MediaType.TEXT_XML;
@@ -27,6 +27,7 @@ import javax.ws.rs.core.Response;
 
 
 import javax.ws.rs.core.UriInfo;
+
 
 
 //import de.shop.bestellverwaltung.domain.Auftrag;
@@ -43,7 +44,7 @@ import de.shop.util.NotFoundException;
 @Produces({ APPLICATION_JSON, APPLICATION_XML + ";qs=0.75", TEXT_XML + ";qs=0.5" })
 @Consumes
 public class KundeResource {
-	public static final String KUNDEN_ID_PATH_PARAM = "kundeId";
+	public static final String KUNDEN_ID_PATH_PARAM = "id";
 	public static final String KUNDEN_NACHNAME_QUERY_PARAM = "nachname";
 	
 	@Context
@@ -86,7 +87,7 @@ public class KundeResource {
 	}
 	
 	private URI getUriBestellungen(Kunde kunde, UriInfo uriInfo) {
-		return uriHelper.getUri(KundeResource.class, "findBestellungenByKundeId", kunde.getid(), uriInfo);
+		return uriHelper.getUri(KundeResource.class, "findBestellungenByKundeId", kunde.getId(), uriInfo);
 	}
 	
 	public Link[] getTransitionalLinks(Kunde kunde, UriInfo uriInfo) {
@@ -102,7 +103,7 @@ public class KundeResource {
                                 .rel(UPDATE_LINK)
                                 .build();
 
-		final Link remove = Link.fromUri(uriHelper.getUri(KundeResource.class, "deleteKunde", kunde.getid(), uriInfo))
+		final Link remove = Link.fromUri(uriHelper.getUri(KundeResource.class, "deleteKunde", kunde.getId(), uriInfo))
                                 .rel(REMOVE_LINK)
                                 .build();
 		
@@ -110,7 +111,7 @@ public class KundeResource {
 	}
 	
 	public URI getUriKunde(Kunde kunde, UriInfo uriInfo) {
-		return uriHelper.getUri(KundeResource.class, "findKundeById", kunde.getid(), uriInfo);
+		return uriHelper.getUri(KundeResource.class, "findKundeById", kunde.getId(), uriInfo);
 	}
 	
 	
@@ -119,7 +120,7 @@ public class KundeResource {
 	@POST
 	@Consumes({APPLICATION_JSON, APPLICATION_XML, TEXT_XML })
 	@Produces
-	public Response createKunde(Kunde kunde) {
+	public Response createKunde(@Valid Kunde kunde) {
 		// TODO Anwendungskern statt Mock, Verwendung von Locale
 		kunde = Mock.createKunde(kunde);
 		return Response.created(getUriKunde(kunde, uriInfo))
@@ -129,7 +130,7 @@ public class KundeResource {
 	@PUT
 	@Consumes({APPLICATION_JSON, APPLICATION_XML, TEXT_XML })
 	@Produces
-	public void updateKunde(Kunde kunde) {
+	public void updateKunde(@Valid Kunde kunde) {
 		// TODO Anwendungskern statt Mock, Verwendung von Locale
 		Mock.updateKunde(kunde);
 	}

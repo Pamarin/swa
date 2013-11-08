@@ -104,11 +104,11 @@ public class Kunde implements Serializable {
 		eMail = k.eMail;
 	}
 
-	public Long getid() {
+	public Long getId() {
 		return this.id;
 	}
 
-	public void setid(Long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
