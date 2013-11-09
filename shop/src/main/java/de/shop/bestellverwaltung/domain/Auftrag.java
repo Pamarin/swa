@@ -3,6 +3,7 @@ import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static javax.ws.rs.core.MediaType.APPLICATION_XML;
 import static javax.ws.rs.core.MediaType.TEXT_XML;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,10 +28,9 @@ public class Auftrag {
 		Abgeschlossen
 	}
 	
-	@XmlTransient
 	private Long id;
-	@XmlTransient
 	private AuftragsStatus status;
+	URI rechnungenUri;
 	@XmlTransient
 	private List<Lieferant> lieferant;
 	@XmlTransient
@@ -167,6 +167,14 @@ public class Auftrag {
 	 */
 	public List<Rechnung> getRechnungAll() {
 		return this.rechnung;
+	}
+	
+	public URI getRechnungenUri() {
+		return rechnungenUri;
+	}
+
+	public void setRechnungenUri(URI rechnungenUri) {
+		this.rechnungenUri = rechnungenUri;
 	}
 	
 	@Override

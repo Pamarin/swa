@@ -1,9 +1,9 @@
 package de.shop.bestellverwaltung.domain;
 
 import java.math.BigDecimal;
+import java.net.URI;
 
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  * @author Jean-Luc Burot
@@ -11,12 +11,11 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @XmlRootElement
 public class Rechnung {
-	@XmlTransient
 	private Long id;
-	@XmlTransient
 	private Boolean istBezahlt;
-	@XmlTransient
 	private BigDecimal summe;
+	URI auftragUri;
+	Auftrag auftrag;
 	
 	/**
 	 * 
@@ -46,6 +45,23 @@ public class Rechnung {
 			throw new NullPointerException("Rechnungsnummer darf nicht leer sein.");
 
 		this.id = id;
+	}
+
+	
+	
+	public Auftrag getAuftrag() {
+		return auftrag;
+	}
+
+	public void setAuftrag(Auftrag auftrag) {
+		this.auftrag = auftrag;
+	}
+
+	public URI getAuftragUri() {
+		return auftragUri;
+	}
+	public void setAuftragUri(URI auftragUri) {
+		this.auftragUri = auftragUri;
 	}
 
 	/**

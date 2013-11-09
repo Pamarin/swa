@@ -21,6 +21,7 @@ import javax.ws.rs.core.Link;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
+import de.shop.bestellverwaltung.domain.Auftrag;
 import de.shop.bestellverwaltung.domain.Rechnung;
 import de.shop.util.Mock;
 import de.shop.util.NotFoundException;
@@ -39,6 +40,8 @@ public class RechnungResource {
 	private UriInfo uriInfo;
 	@Inject
 	private UriHelper uriHelper;
+	@Inject
+	private AuftragResource auftragResource;
 	
 	@GET
 	@Path("{id:[1-9][0-9]*}")
@@ -91,5 +94,14 @@ public class RechnungResource {
 	public void deleteRechnung(@PathParam("id") Long liefernantId) {
 		// TODO Anwendungskern statt Mock, Verwendung von Locale
 		Mock.deleteRechnung(liefernantId);
+	}
+	
+	public void setStructuralLinks(Rechnung rechnung, UriInfo uriInfo) {
+		// URI fuer Kunde setzen
+		final Auftrag auftrag = rechnung.getAuftrag();
+		if (auftrag != null) {
+			final URI auftragUri = auftragResource.getUriAuftrag(rechnung.getAuftrag(), uriInfo);
+			rechnung.setAuftragUri(auftragUri);
+		}
 	}
 }

@@ -59,6 +59,10 @@ public final class Mock {
 		return rechnung;
 	}
 	
+	public static List<Rechnung> findRechnungenByAuftrag(Auftrag auftrag) {
+		return findAllRechnungen();
+	}
+	
 	public static Kunde findKundeById(Long id) {
 		if (id > MAX_ID)
 			return null;
