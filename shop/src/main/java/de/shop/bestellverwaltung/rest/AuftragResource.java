@@ -19,8 +19,6 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
 import de.shop.bestellverwaltung.domain.Auftrag;
-import de.shop.kundenverwaltung.domain.Kunde;
-import de.shop.kundenverwaltung.rest.KundeResource;
 import de.shop.util.Mock;
 import de.shop.util.rest.NotFoundException;
 import de.shop.util.rest.UriHelper;
@@ -38,19 +36,16 @@ public class AuftragResource {
 	@Inject
 	private UriHelper uriHelper;
 	
-	@Inject
-	private KundeResource kundeResource;
-	
 	@GET
 	@Path("{id:[1-9][0-9]*}")
-	public Response findBestellungById(@PathParam("id") Long id) {
+	public Response findAuftragById(@PathParam("id") Long id) {
 		// TODO Anwendungskern statt Mock, Verwendung von Locale
 		final Auftrag auftrag = Mock.findAuftragById(id);
 		if (auftrag == null) {
 			throw new NotFoundException("Keine Bestellung mit der ID " + id + " gefunden.");
 		}
 		
-		setStructuralLinks(auftrag, uriInfo);
+		//setStructuralLinks(auftrag, uriInfo);
 		
 		// Link-Header setzen
 		final Response response = Response.ok(auftrag)
@@ -60,6 +55,7 @@ public class AuftragResource {
 		return response;
 	}
 	
+	/*
 	public void setStructuralLinks(Auftrag auftrag, UriInfo uriInfo) {
 		// URI fuer Kunde setzen
 		final Kunde kunde = auftrag.getKunde();
@@ -68,6 +64,7 @@ public class AuftragResource {
 			auftrag.setKundeUri(kundeUri);
 		}
 	}
+	*/
 	
 	private Link[] getTransitionalLinks(Auftrag auftrag, UriInfo uriInfo) {
 		final Link self = Link.fromUri(getUriAuftrag(auftrag, uriInfo))
