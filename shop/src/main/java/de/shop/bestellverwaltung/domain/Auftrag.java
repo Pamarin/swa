@@ -1,16 +1,13 @@
 package de.shop.bestellverwaltung.domain;
-import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
-import static javax.ws.rs.core.MediaType.APPLICATION_XML;
-import static javax.ws.rs.core.MediaType.TEXT_XML;
-
+import java.io.Serializable;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+
+import de.shop.kundenverwaltung.domain.Kunde;
 
 
 /**
@@ -18,23 +15,31 @@ import javax.xml.bind.annotation.XmlTransient;
  *
  */
 @XmlRootElement
-@Path("auftrag")
-@Produces({ APPLICATION_JSON, APPLICATION_XML + ";qs=0.75", TEXT_XML + ";qs=0.75"})
-@Consumes
-public class Auftrag {
+public class Auftrag implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3378371456188800702L;
+
+	/**
+	 * 
+	 */
+
 	public enum AuftragsStatus {
 		InBearbeitung,
 		Abgeschlossen
 	}
 	
-	@XmlTransient
 	private Long id;
-	@XmlTransient
 	private AuftragsStatus status;
 	@XmlTransient
 	private List<Lieferant> lieferant;
 	@XmlTransient
 	private List<Rechnung> rechnung;
+	@XmlTransient
+	private Kunde kunde;
+	private URI kundeUri;
 	
 	/**
 	 * @param nr Auftragsnummer.
@@ -169,11 +174,39 @@ public class Auftrag {
 		return this.rechnung;
 	}
 	
+	/**
+	 * @return Kunde.
+	 */
+	public Kunde getKunde() {
+		return kunde;
+	}
+
+	/**
+	 * @param kunde Kunde.
+	 */
+	public void setKunde(Kunde kunde) {
+		if(kunde == null)
+			throw new NullPointerException("Es muss ein Kunde vorhanden sein.");
+		
+		this.kunde = kunde;
+	}
+	
+	public URI getKundeUri() {
+		return kundeUri;
+	}
+
+	public void setKundeUri(URI kundeUri) {
+		this.kundeUri = kundeUri;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((kunde == null) ? 0 : kunde.hashCode());
+		result = prime * result
+				+ ((kundeUri == null) ? 0 : kundeUri.hashCode());
 		result = prime * result
 				+ ((lieferant == null) ? 0 : lieferant.hashCode());
 		result = prime * result
@@ -196,6 +229,16 @@ public class Auftrag {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
+		if (kunde == null) {
+			if (other.kunde != null)
+				return false;
+		} else if (!kunde.equals(other.kunde))
+			return false;
+		if (kundeUri == null) {
+			if (other.kundeUri != null)
+				return false;
+		} else if (!kundeUri.equals(other.kundeUri))
+			return false;
 		if (lieferant == null) {
 			if (other.lieferant != null)
 				return false;
@@ -210,21 +253,13 @@ public class Auftrag {
 			return false;
 		return true;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "Auftrag [getId()=" + getId() + ", getStatus()=" + getStatus()
-				+ ", getLieferantAll()=" + getLieferantAll()
-				+ ", getRechnungAll()=" + getRechnungAll() + "]";
+		return "Auftrag [id=" + id + ", status=" + status + ", lieferant="
+				+ lieferant + ", rechnung=" + rechnung + ", kunde=" + kunde
+				+ ", kundeUri=" + kundeUri + "]";
 	}
-
-	/*
-	@POST
-	public Response createAuftrag(Auftrag auftrag) {
-		//einen neuen Auftrag anlegen
-		URI myuri = URI.create("http://.../auftrag/" + getId());
-		return Response.created(myuri)
-					   .build();
-	}
-	*/
+	
+	
 }

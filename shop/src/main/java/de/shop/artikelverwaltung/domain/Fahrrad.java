@@ -1,9 +1,16 @@
 package de.shop.artikelverwaltung.domain;
 
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import java.io.Serializable;
 
-public class Fahrrad {
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
+public class Fahrrad implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3628353876023627522L;
 
 	enum Farbe {
 		weiss, schwarz, grau, rot, blau, gelb, gruen, bunt,
@@ -16,17 +23,10 @@ public class Fahrrad {
 	enum Art {
 		Herrenrad, Damenrad, Kinderfahrrad,
 	}
-
-	@Size(min = 1, max = 2)
-	@Pattern(regexp = "[0-9][0-9]")
 	private String gaenge;
 
-	@Size(min = 1, max = 2)
-	@Pattern(regexp = "[0-9][0-9]")
 	private String zollgroesse;
 
-	@Size(min = 2, max = 3)
-	@Pattern(regexp = "[0-9]")
 	private String rahmenhoehe;
 
 	private boolean strassenzulassung;

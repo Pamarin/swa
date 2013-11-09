@@ -1,7 +1,8 @@
 package de.shop.bestellverwaltung.domain;
 
+import java.io.Serializable;
+
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 import de.shop.util.Adresse;
 
@@ -10,14 +11,14 @@ import de.shop.util.Adresse;
  *
  */
 @XmlRootElement
-public class Lieferant {
-	@XmlTransient
+public class Lieferant implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7357475143695168508L;
 	private Long id;
-	@XmlTransient
 	private String name;
-	@XmlTransient
 	private Adresse adresseLieferant;
-	@XmlTransient
 	private Integer lieferzeit;
 	
 	/**
@@ -159,8 +160,7 @@ public class Lieferant {
 
 	@Override
 	public String toString() {
-		return "Lieferant [getLieferzeit()=" + getLieferzeit()
-				+ ", getAdresseLieferant()=" + getAdresseLieferant()
-				+ ", getId()=" + getId() + ", getName()=" + getName() + "]";
+		return "Lieferant [id=" + id + ", name=" + name + ", adresseLieferant="
+				+ adresseLieferant + ", lieferzeit=" + lieferzeit + "]";
 	}
 }

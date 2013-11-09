@@ -1,13 +1,17 @@
 package de.shop.artikelverwaltung.domain;
 
-import javax.validation.constraints.DecimalMin;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
-
+import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class Produkt {
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
+public class Produkt implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4306507337216063558L;
+
 	// geschrieben von Marvin
 	// ToDo Beans Validation für Verfügbarkeit
 
@@ -15,19 +19,10 @@ public class Produkt {
 		istVerfügbar, istNichtVerfügbar, istNachbestellt, istNichtMehrImSortiment,
 	}
 
-	@NotNull
-	@Pattern(regexp = "\\d{8}")
 	private String produktnummer;
 
-	@NotNull
-	// sinnvoll?
-	@Size(min = 3, max = 30)
-	@Pattern(regexp = "[A-Z0123456789][a-z0123456789][a-z 0123456789]")
-	// \w?
 	private String bezeichnung;
 
-	@NotNull
-	@DecimalMin("0,99")
 	private BigDecimal preis;
 
 	private Verfügbarkeit Status;

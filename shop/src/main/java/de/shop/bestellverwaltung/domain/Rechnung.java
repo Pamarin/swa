@@ -1,21 +1,22 @@
 package de.shop.bestellverwaltung.domain;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  * @author Jean-Luc Burot
  *
  */
 @XmlRootElement
-public class Rechnung {
-	@XmlTransient
+public class Rechnung implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1399176657304048288L;
 	private Long id;
-	@XmlTransient
 	private Boolean istBezahlt;
-	@XmlTransient
 	private BigDecimal summe;
 	
 	/**
@@ -122,7 +123,7 @@ public class Rechnung {
 
 	@Override
 	public String toString() {
-		return "Rechnung [getId()=" + getId() + ", getIstBezahlt()="
-				+ getIstBezahlt() + ", getSumme()=" + getSumme() + "]";
+		return "Rechnung [id=" + id + ", istBezahlt=" + istBezahlt + ", summe="
+				+ summe + "]";
 	}
 }

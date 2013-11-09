@@ -34,6 +34,20 @@ public final class Mock {
 		return auftrag;
 	}
 	
+	public static List<Auftrag> findAuftraegeByKunde(Kunde kunde) {
+		// Beziehungsgeflecht zwischen Kunde und Bestellungen aufbauen
+		final int anzahl = kunde.getId().intValue() % MAX_AUFTRAEGE + 1;  // 1, 2, 3 oder 4 Bestellungen
+		final List<Auftrag> auftraege = new ArrayList<>(anzahl);
+		for (int i = 1; i <= anzahl; i++) {
+			final Auftrag auftrag = findAuftragById(Long.valueOf(i));
+			auftrag.setKunde(kunde);
+			auftraege.add(auftrag);			
+		}
+		kunde.setAuftraege(auftraege);
+		
+		return auftraege;
+	}
+	
 	public static Lieferant findLieferantById(Long id) {
 		if(id > MAX_ID)
 			return null;

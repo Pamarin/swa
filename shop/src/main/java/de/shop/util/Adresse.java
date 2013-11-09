@@ -1,58 +1,27 @@
 package de.shop.util;
 
-import static javax.persistence.TemporalType.TIMESTAMP;
-
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Temporal;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlTransient;
+import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement
 public class Adresse implements Serializable {
 	
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4635465770154913825L;
+	/**
 	 * @author Jean-Luc Burot, Jan Krieghoff
 	 */
-	private static final long serialVersionUID = -2761718968924894847L;
-
-	@Id
-	@GeneratedValue
-	@Column(name = "id", nullable = false, updatable = false)
-	@XmlAttribute
 	private Long id;
-
-	@Column(name = "aktualisiert", nullable = false)
-	@Temporal(TIMESTAMP)
 	private Date aktualisiert;
-
-	@Column(name = "erzeugt", nullable = false)
-	@Temporal(TIMESTAMP)
-	@XmlTransient
 	private Date erzeugt;
-
-	@Column(name = "strasse", nullable = false)
-	@XmlElement(required = true)
 	private String strasse;
-
-	@Column(name = "hausnummer", nullable = false)
-	@XmlElement(required = true)
 	private String hausnummer;
-
-	@Column(name = "plz", nullable = false)
-	@XmlElement(required = true)
 	private String plz;
-
-	@Column(name = "ort", nullable = false)
-	@XmlElement(required = true)
 	private String ort;
-	
-	@Column(name = "land", nullable = false)
-	@XmlElement(required = true)
 	private String land;
 
 	public Long getId() {
@@ -223,10 +192,9 @@ public class Adresse implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Adresse [getId()=" + getId() + ", getLand()=" + getLand()
-				+ ", getAktualisiert()=" + getAktualisiert()
-				+ ", getErzeugt()=" + getErzeugt() + ", getHausnummer()="
-				+ getHausnummer() + ", getOrt()=" + getOrt() + ", getPlz()="
-				+ getPlz() + ", getStrasse()=" + getStrasse() + "]";
+		return "Adresse [id=" + id + ", aktualisiert=" + aktualisiert
+				+ ", erzeugt=" + erzeugt + ", strasse=" + strasse
+				+ ", hausnummer=" + hausnummer + ", plz=" + plz + ", ort="
+				+ ort + ", land=" + land + "]";
 	}
 }
