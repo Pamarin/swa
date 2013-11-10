@@ -80,6 +80,9 @@ public class Kunde implements Serializable {
 
 	@Valid
 	private Adresse adresse;
+	
+	@Valid
+	private Bankverbindung bankverbindung;
 
 	@JoinColumn(name = "kunde_fk", nullable = false)
 	@OrderColumn(name = "idx", nullable = false)
@@ -175,6 +178,22 @@ public class Kunde implements Serializable {
 	public void setAdresse(Adresse adresse) {
 		this.adresse = adresse;
 	}
+	
+	public String geteMail() {
+		return eMail;
+	}
+
+	public void seteMail(String eMail) {
+		this.eMail = eMail;
+	}
+
+	public Bankverbindung getBankverbindung() {
+		return bankverbindung;
+	}
+
+	public void setBankverbindung(Bankverbindung bankverbindung) {
+		this.bankverbindung = bankverbindung;
+	}
 
 	public List<Auftrag> getAuftraege() {
 		return Collections.unmodifiableList(auftraege);
@@ -211,7 +230,25 @@ public class Kunde implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((adresse == null) ? 0 : adresse.hashCode());
+		result = prime * result
+				+ ((aktualisiert == null) ? 0 : aktualisiert.hashCode());
+		result = prime * result + ((anrede == null) ? 0 : anrede.hashCode());
+		result = prime * result
+				+ ((auftraege == null) ? 0 : auftraege.hashCode());
+		result = prime * result
+				+ ((auftraegeUri == null) ? 0 : auftraegeUri.hashCode());
+		result = prime * result
+				+ ((bankverbindung == null) ? 0 : bankverbindung.hashCode());
+		result = prime * result
+				+ ((bestellungenUri == null) ? 0 : bestellungenUri.hashCode());
+		result = prime * result + ((eMail == null) ? 0 : eMail.hashCode());
+		result = prime * result + ((erzeugt == null) ? 0 : erzeugt.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result
+				+ ((nachname == null) ? 0 : nachname.hashCode());
+		result = prime * result + ((telefon == null) ? 0 : telefon.hashCode());
+		result = prime * result + ((vorname == null) ? 0 : vorname.hashCode());
 		return result;
 	}
 
@@ -224,20 +261,84 @@ public class Kunde implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Kunde other = (Kunde) obj;
+		if (adresse == null) {
+			if (other.adresse != null)
+				return false;
+		} else if (!adresse.equals(other.adresse))
+			return false;
+		if (aktualisiert == null) {
+			if (other.aktualisiert != null)
+				return false;
+		} else if (!aktualisiert.equals(other.aktualisiert))
+			return false;
+		if (anrede == null) {
+			if (other.anrede != null)
+				return false;
+		} else if (!anrede.equals(other.anrede))
+			return false;
+		if (auftraege == null) {
+			if (other.auftraege != null)
+				return false;
+		} else if (!auftraege.equals(other.auftraege))
+			return false;
+		if (auftraegeUri == null) {
+			if (other.auftraegeUri != null)
+				return false;
+		} else if (!auftraegeUri.equals(other.auftraegeUri))
+			return false;
+		if (bankverbindung == null) {
+			if (other.bankverbindung != null)
+				return false;
+		} else if (!bankverbindung.equals(other.bankverbindung))
+			return false;
+		if (bestellungenUri == null) {
+			if (other.bestellungenUri != null)
+				return false;
+		} else if (!bestellungenUri.equals(other.bestellungenUri))
+			return false;
+		if (eMail == null) {
+			if (other.eMail != null)
+				return false;
+		} else if (!eMail.equals(other.eMail))
+			return false;
+		if (erzeugt == null) {
+			if (other.erzeugt != null)
+				return false;
+		} else if (!erzeugt.equals(other.erzeugt))
+			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
-		}
-		else if (!id.equals(other.id))
+		} else if (!id.equals(other.id))
+			return false;
+		if (nachname == null) {
+			if (other.nachname != null)
+				return false;
+		} else if (!nachname.equals(other.nachname))
+			return false;
+		if (telefon == null) {
+			if (other.telefon != null)
+				return false;
+		} else if (!telefon.equals(other.telefon))
+			return false;
+		if (vorname == null) {
+			if (other.vorname != null)
+				return false;
+		} else if (!vorname.equals(other.vorname))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Kunde [id=" + id + ", anrede=" + anrede + ", eMail="
-				+ eMail + ", nachname=" + nachname + ", telefon=" + telefon
-				+ ", vorname=" + vorname + ", adresse=" + adresse + "]";
+		return "Kunde [bestellungenUri=" + bestellungenUri + ", id=" + id
+				+ ", aktualisiert=" + aktualisiert + ", erzeugt=" + erzeugt
+				+ ", anrede=" + anrede + ", eMail=" + eMail + ", nachname="
+				+ nachname + ", vorname=" + vorname + ", telefon=" + telefon
+				+ ", adresse=" + adresse + ", bankverbindung=" + bankverbindung
+				+ ", auftraege=" + auftraege + ", auftraegeUri=" + auftraegeUri
+				+ "]";
 	}
+
 
 }

@@ -18,7 +18,8 @@ public class Adresse implements Serializable {
 	/**
 	 * @author Jean-Luc Burot, Jan Krieghoff
 	 */
-	private static final long serialVersionUID = -2761718968924894847L;
+	
+	private static final long serialVersionUID = -4635465770154913825L;
 
 	@Id
 	@GeneratedValue
